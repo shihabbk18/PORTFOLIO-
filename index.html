@@ -1,146 +1,508 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Shihab Bin Kader | Portfolio</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Shihab Kabir | AI & Machine Learning Portfolio</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
   <style>
-    body { font-family: 'Inter', system-ui, sans-serif; }
-    .gradient-text {
-      background: linear-gradient(90deg, #a855f7, #3b82f6);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: #0f172a;
+      color: white;
+      line-height: 1.6;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .container {
+      width: 90%;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    nav {
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 1000;
+      background: rgba(15, 23, 42, 0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .nav-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 18px 0;
+    }
+
+    .logo {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #38bdf8;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 24px;
+    }
+
+    .nav-links a {
+      color: #cbd5e1;
+      transition: 0.3s;
+    }
+
+    .nav-links a:hover {
+      color: #38bdf8;
+    }
+
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      background: linear-gradient(to bottom right, #0f172a, #111827);
+      padding-top: 80px;
+    }
+
+    .hero-content {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+    }
+
+    .hero-text h1 {
+      font-size: 4rem;
+      margin-bottom: 20px;
+      line-height: 1.1;
+    }
+
+    .hero-text span {
+      color: #38bdf8;
+    }
+
+    .hero-text p {
+      color: #cbd5e1;
+      margin-bottom: 30px;
+      font-size: 1.1rem;
+    }
+
+    .buttons {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      padding: 14px 26px;
+      border-radius: 10px;
+      font-weight: 600;
+      transition: 0.3s;
+      display: inline-block;
+    }
+
+    .btn-primary {
+      background: #38bdf8;
+      color: #0f172a;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-3px);
+      background: #0ea5e9;
+    }
+
+    .btn-secondary {
+      border: 1px solid #38bdf8;
+      color: #38bdf8;
+    }
+
+    .btn-secondary:hover {
+      background: #38bdf8;
+      color: #0f172a;
+    }
+
+    .hero-card {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.08);
+      padding: 40px;
+      border-radius: 24px;
+      backdrop-filter: blur(15px);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+    }
+
+    .hero-card h3 {
+      color: #38bdf8;
+      margin-bottom: 20px;
+      font-size: 1.4rem;
+    }
+
+    .hero-card ul {
+      list-style: none;
+    }
+
+    .hero-card li {
+      margin-bottom: 14px;
+      color: #cbd5e1;
+    }
+
+    section {
+      padding: 100px 0;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 60px;
+    }
+
+    .section-title h2 {
+      font-size: 2.5rem;
+      margin-bottom: 12px;
+    }
+
+    .section-title p {
+      color: #94a3b8;
+    }
+
+    .about {
+      background: #111827;
+    }
+
+    .about-content {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 50px;
+      align-items: center;
+    }
+
+    .about-box {
+      background: rgba(255,255,255,0.05);
+      padding: 35px;
+      border-radius: 20px;
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .about-box h3 {
+      margin-bottom: 20px;
+      color: #38bdf8;
+    }
+
+    .skills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 20px;
+    }
+
+    .skill {
+      background: rgba(56,189,248,0.15);
+      color: #38bdf8;
+      padding: 10px 16px;
+      border-radius: 999px;
+      font-size: 0.9rem;
+    }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+    }
+
+    .project-card {
+      background: rgba(255,255,255,0.05);
+      border-radius: 24px;
+      padding: 30px;
+      border: 1px solid rgba(255,255,255,0.08);
+      transition: 0.3s;
+    }
+
+    .project-card:hover {
+      transform: translateY(-8px);
+      border-color: #38bdf8;
+    }
+
+    .project-card h3 {
+      margin-bottom: 15px;
+      color: #38bdf8;
+    }
+
+    .project-card p {
+      color: #cbd5e1;
+      margin-bottom: 20px;
+    }
+
+    .project-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    .tag {
+      background: rgba(255,255,255,0.08);
+      padding: 8px 14px;
+      border-radius: 999px;
+      font-size: 0.85rem;
+    }
+
+    .contact {
+      background: #111827;
+      text-align: center;
+    }
+
+    .contact p {
+      color: #cbd5e1;
+      margin-bottom: 30px;
+    }
+
+    footer {
+      padding: 30px 0;
+      text-align: center;
+      border-top: 1px solid rgba(255,255,255,0.08);
+      color: #94a3b8;
+    }
+
+    @media(max-width: 900px) {
+      .hero-content,
+      .about-content {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-text h1 {
+        font-size: 3rem;
+      }
+
+      .nav-links {
+        display: none;
+      }
     }
   </style>
 </head>
-<body class="bg-zinc-950 text-white">
+<body>
 
-  <!-- Navbar -->
-  <nav class="fixed top-0 w-full bg-zinc-950/90 backdrop-blur-md border-b border-zinc-800 z-50">
-    <div class="max-w-5xl mx-auto px-6 py-5 flex justify-between items-center">
-      <h1 class="text-2xl font-bold gradient-text">Shihab Bin Kader</h1>
-      <div class="flex gap-8 text-sm">
-        <a href="#about" class="hover:text-purple-400 transition">About</a>
-        <a href="#projects" class="hover:text-purple-400 transition">Projects</a>
-        <a href="#research" class="hover:text-purple-400 transition">Research</a>
-        <a href="#contact" class="hover:text-purple-400 transition">Contact</a>
+  <nav>
+    <div class="container nav-content">
+      <div class="logo">Shihab Kabir</div>
+
+      <div class="nav-links">
+        <a href="#about">About</a>
+        <a href="#projects">Projects</a>
+        <a href="#contact">Contact</a>
       </div>
     </div>
   </nav>
 
-  <!-- Hero -->
-  <section class="min-h-screen flex items-center pt-20">
-    <div class="max-w-5xl mx-auto px-6">
-      <h2 class="text-6xl md:text-7xl font-bold leading-tight mb-6">
-        Hi, I'm <span class="gradient-text">Shihab Bin Kader</span>
-      </h2>
-      <p class="text-2xl text-zinc-400 mb-10 max-w-2xl">
-        Computer Science Graduate specializing in <span class="text-white">Computer Vision</span>, 
-        Deep Learning, and Explainable AI (XAI).
-      </p>
-      <div class="flex gap-4 flex-wrap">
-        <a href="#projects" class="bg-white text-black px-8 py-4 rounded-full font-medium hover:bg-zinc-200 transition">
-          View Projects
-        </a>
-        <a href="https://github.com/yourusername" target="_blank" 
-           class="border border-white px-8 py-4 rounded-full hover:bg-white hover:text-black transition">
-          GitHub
-        </a>
-        <a href="mailto:shihabbk18@gmail.com" 
-           class="border border-white px-8 py-4 rounded-full hover:bg-white hover:text-black transition">
-          Get In Touch
-        </a>
+  <section class="hero">
+    <div class="container hero-content">
+
+      <div class="hero-text">
+        <h1>
+          AI & Machine Learning <span>Portfolio</span>
+        </h1>
+
+        <p>
+          Computer Science graduate passionate about artificial intelligence,
+          computer vision, machine learning, and real-time AI systems.
+          Building projects focused on solving real-world problems.
+        </p>
+
+        <div class="buttons">
+          <a href="#projects" class="btn btn-primary">View Projects</a>
+
+          <a href="https://github.com/YOUR_USERNAME" target="_blank" class="btn btn-secondary">
+            GitHub Profile
+          </a>
+        </div>
+      </div>
+
+      <div class="hero-card">
+        <h3>Current Focus</h3>
+
+        <ul>
+          <li>✓ Data Analysis & Visualization</li>
+          <li>✓ Machine Learning Projects</li>
+          <li>✓ Computer Vision Systems</li>
+          <li>✓ Real-Time AI Applications</li>
+          <li>✓ Deep Learning Research</li>
+        </ul>
+      </div>
+
+    </div>
+  </section>
+
+  <section id="about" class="about">
+    <div class="container">
+
+      <div class="section-title">
+        <h2>About Me</h2>
+        <p>Background, interests, and technical skills</p>
+      </div>
+
+      <div class="about-content">
+
+        <div class="about-box">
+          <h3>Who I Am</h3>
+
+          <p>
+            I am a Computer Science graduate interested in AI, machine learning,
+            computer vision, and data science. I enjoy building projects,
+            exploring research ideas, and creating intelligent systems that solve
+            practical problems.
+          </p>
+        </div>
+
+        <div class="about-box">
+          <h3>Technical Skills</h3>
+
+          <div class="skills">
+            <div class="skill">Python</div>
+            <div class="skill">Pandas</div>
+            <div class="skill">Machine Learning</div>
+            <div class="skill">TensorFlow</div>
+            <div class="skill">OpenCV</div>
+            <div class="skill">Data Analysis</div>
+            <div class="skill">Computer Vision</div>
+            <div class="skill">GitHub</div>
+            <div class="skill">Deep Learning</div>
+            <div class="skill">Google Colab</div>
+          </div>
+        </div>
+
       </div>
     </div>
   </section>
 
-  <!-- About -->
-  <section id="about" class="py-24 bg-zinc-900">
-    <div class="max-w-5xl mx-auto px-6">
-      <h2 class="text-4xl font-bold mb-8">About Me</h2>
-      <p class="text-lg text-zinc-300 max-w-3xl">
-        Passionate about developing interpretable hybrid deep learning models for real-world applications, 
-        particularly in precision agriculture and smart farming systems. 
-        My research focuses on Computer Vision and Explainable AI (XAI) using techniques like Grad-CAM.
-      </p>
+  <section id="projects">
+    <div class="container">
+
+      <div class="section-title">
+        <h2>Featured Projects</h2>
+        <p>Projects demonstrating AI, ML, and data analysis skills</p>
+      </div>
+
+      <div class="projects-grid">
+
+        <div class="project-card">
+          <h3>Movie Data Analysis</h3>
+
+          <p>
+            Analyzed movie datasets using Python and visualization libraries
+            to discover trends in ratings, genres, directors, and movie performance.
+          </p>
+
+          <div class="project-tags">
+            <div class="tag">Python</div>
+            <div class="tag">Pandas</div>
+            <div class="tag">Matplotlib</div>
+          </div>
+
+          <a href="#" class="btn btn-primary">View Project</a>
+        </div>
+
+        <div class="project-card">
+          <h3>Drowsiness Detection System</h3>
+
+          <p>
+            Real-time AI system using computer vision techniques to detect driver
+            drowsiness and improve road safety.
+          </p>
+
+          <div class="project-tags">
+            <div class="tag">OpenCV</div>
+            <div class="tag">TensorFlow</div>
+            <div class="tag">Computer Vision</div>
+          </div>
+
+          <a href="#" class="btn btn-primary">View Project</a>
+        </div>
+
+        <div class="project-card">
+          <h3>Student Performance Prediction</h3>
+
+          <p>
+            Machine learning model that predicts student academic performance
+            using educational and behavioral data.
+          </p>
+
+          <div class="project-tags">
+            <div class="tag">Scikit-learn</div>
+            <div class="tag">Machine Learning</div>
+            <div class="tag">Data Science</div>
+          </div>
+
+          <a href="#" class="btn btn-primary">View Project</a>
+        </div>
+
+      </div>
     </div>
   </section>
 
-  <!-- Research -->
+  <section id="contact" class="contact">
+    <div class="container">
+
+      <div class="section-title">
+        <h2>Contact</h2>
+        <p>Let’s connect and collaborate</p>
+      </div>
+
+      <p>
+        Interested in AI, research, machine learning, or collaboration opportunities?
+      </p>
+      <!-- Research -->
   <section id="research" class="py-24">
     <div class="max-w-5xl mx-auto px-6">
       <h2 class="text-4xl font-bold mb-12">Research & Publication</h2>
       <div class="bg-zinc-900 border border-zinc-800 rounded-2xl p-8">
-        <h3 class="text-xl font-semibold mb-3">Hybrid Xception-LSTM Model for Explainable Mango Ripeness Classification</h3>
-        <p class="text-purple-400 mb-4">IEEE 4th International Conference on Robotics, Automation, Artificial Intelligence and Internet-of-Things • Nov 2025</p>
+        <h3 class="text-xl font-semibold mb-3">Hybrid Xception-LSTM Model for Explainable Mango Ripeness Classification Using Grad-CAM</h3>
+        <p class="text-purple-400 mb-4">IEEE 4th International Conference on Robotics, Automation, Artificial Intelligence and Internet-of-Things • November 2025</p>
         <p class="text-zinc-400">
-          Developed a hybrid deep learning model achieving <strong>98% accuracy</strong> on a 6,000-image dataset with 6 ripeness stages. 
-          Enhanced model interpretability using Grad-CAM visualizations.
+          Achieved <strong>98% accuracy</strong> on a 6,000-image dataset with 6 ripeness stages. 
+          Enhanced interpretability using Grad-CAM visualizations.
         </p>
-        <p class="mt-4 text-sm text-zinc-500">Thesis: Mango Ripeness Detection Using Deep Learning with XAI (GradCAM)</p>
       </div>
     </div>
   </section>
 
-  <!-- Projects -->
-  <section id="projects" class="py-24 bg-zinc-900">
-    <div class="max-w-5xl mx-auto px-6">
-      <h2 class="text-4xl font-bold mb-12">Projects</h2>
-      
-      <div class="grid md:grid-cols-2 gap-8">
-        <!-- Sign Sense -->
-        <div class="bg-zinc-900 border border-zinc-800 rounded-2xl p-8 hover:border-purple-500 transition">
-          <h3 class="text-2xl font-semibold mb-3">Sign Sense</h3>
-          <p class="text-zinc-400 mb-6">
-            Web application for learning sign language with interactive tutorials for alphabet and basic phrases.
-          </p>
-          <div class="flex flex-wrap gap-2 mb-6">
-            <span class="text-xs bg-zinc-800 px-3 py-1 rounded-full">Python</span>
-            <span class="text-xs bg-zinc-800 px-3 py-1 rounded-full">Web Development</span>
-            <span class="text-xs bg-zinc-800 px-3 py-1 rounded-full">Authentication</span>
-          </div>
-          <a href="#" class="text-purple-400 hover:underline">View Project →</a>
-        </div>
-
-        <!-- Fun with Flags -->
-        <div class="bg-zinc-900 border border-zinc-800 rounded-2xl p-8 hover:border-purple-500 transition">
-          <h3 class="text-2xl font-semibold mb-3">Fun with Flags</h3>
-          <p class="text-zinc-400 mb-6">
-            Android mobile application quiz game for learning world flags with score tracking and feedback.
-          </p>
-          <div class="flex flex-wrap gap-2 mb-6">
-            <span class="text-xs bg-zinc-800 px-3 py-1 rounded-full">Java</span>
-            <span class="text-xs bg-zinc-800 px-3 py-1 rounded-full">Android Studio</span>
-            <span class="text-xs bg-zinc-800 px-3 py-1 rounded-full">MySQL</span>
-          </div>
-          <a href="#" class="text-purple-400 hover:underline">View Project →</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Contact -->
-  <section id="contact" class="py-24">
-    <div class="max-w-5xl mx-auto px-6 text-center">
-      <h2 class="text-4xl font-bold mb-6">Let's Connect</h2>
-      <p class="text-zinc-400 mb-10">Open to research opportunities, collaborations, and interesting projects.</p>
-      
-      <div class="flex flex-wrap justify-center gap-6 text-lg">
-        <a href="mailto:shihabbk18@gmail.com" class="flex items-center gap-3 hover:text-purple-400 transition">
-          <i class="fa-solid fa-envelope"></i> shihabbk18@gmail.com
+      <div class="buttons" style="justify-content:center;">
+        <a href="mailto:shihabbk18@gmail.com" class="btn btn-primary">
+          Email Me
         </a>
         <a href="tel:+8801681079357" class="flex items-center gap-3 hover:text-purple-400 transition">
-          <i class="fa-solid fa-phone"></i> +880 1681-079357
+          <i class="fa-solid fa-phone"></i> Phone Number
+        </a>
+
+        <a href="https://github.com/shihabbk18" target="_blank" class="btn btn-secondary">
+          GitHub
         </a>
       </div>
+
     </div>
   </section>
 
-  <footer class="py-10 text-center text-zinc-500 text-sm border-t border-zinc-800">
-    © 2026 Shihab Bin Kader • Built with GitHub Pages
+  <footer>
+    <div class="container">
+      <p>© 2026 Shihab Bin Kader | AI & Machine Learning Portfolio</p>
+    </div>
   </footer>
 
 </body>
 </html>
+...
+
+Your portfolio will now look modern, professional, and attractive on both desktop and mobile.
