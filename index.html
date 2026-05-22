@@ -1,334 +1,147 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Shihab Bin Kader | AI & ML Portfolio</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shihab Bin Kader | AI & ML Engineer</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      scroll-behavior: smooth;
+    :root {
+      --primary: #0ea5e9;
+      --dark: #0f172a;
+      --light: #f8fafc;
     }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
-      font-family: 'Poppins', sans-serif;
-      background: #0f172a;
-      color: white;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #0f172a 0%, #1e2937 100%);
+      color: #e2e8f0;
       line-height: 1.6;
     }
-    .container {
-      width: 90%;
-      max-width: 1200px;
-      margin: auto;
-    }
-    nav {
-      position: fixed;
-      width: 100%;
-      top: 0;
-      z-index: 1000;
-      background: rgba(15, 23, 42, 0.95);
-      backdrop-filter: blur(10px);
-      border-bottom: 1px solid rgba(255,255,255,0.08);
-    }
-    .nav-content {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 18px 0;
-    }
-    .logo {
-      font-size: 1.5rem;
-      font-weight: 700;
-      color: #38bdf8;
-    }
-    .nav-links {
-      display: flex;
-      gap: 24px;
-    }
-    .nav-links a {
-      color: #cbd5e1;
-      transition: 0.3s;
-    }
-    .nav-links a:hover {
-      color: #38bdf8;
+    .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+
+    header {
+      padding: 2rem 0;
+      border-bottom: 1px solid #334155;
     }
     .hero {
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      background: linear-gradient(to bottom right, #0f172a, #111827);
-      padding-top: 80px;
-    }
-    .hero-content {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 60px;
-      align-items: center;
-    }
-    .hero-text h1 {
-      font-size: 3.8rem;
-      margin-bottom: 20px;
-      line-height: 1.1;
-    }
-    .hero-text span {
-      color: #38bdf8;
-    }
-    .hero-text p {
-      color: #cbd5e1;
-      margin-bottom: 30px;
-      font-size: 1.1rem;
-    }
-    .btn {
-      padding: 14px 26px;
-      border-radius: 10px;
-      font-weight: 600;
-      transition: 0.3s;
-      display: inline-block;
-    }
-    .btn-primary {
-      background: #38bdf8;
-      color: #0f172a;
-    }
-    .btn-primary:hover {
-      transform: translateY(-3px);
-      background: #0ea5e9;
-    }
-    .btn-secondary {
-      border: 1px solid #38bdf8;
-      color: #38bdf8;
-    }
-    .btn-secondary:hover {
-      background: #38bdf8;
-      color: #0f172a;
-    }
-    section {
-      padding: 100px 0;
-    }
-    .section-title {
       text-align: center;
-      margin-bottom: 60px;
+      padding: 4rem 0;
     }
-    .section-title h2 {
-      font-size: 2.5rem;
-      margin-bottom: 12px;
+    .hero h1 {
+      font-size: 3.5rem;
+      margin-bottom: 1rem;
+      background: linear-gradient(90deg, #0ea5e9, #3b82f6);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
     }
-    .section-title p {
-      color: #94a3b8;
+    .hero p { font-size: 1.3rem; color: #94a3b8; margin-bottom: 2rem; }
+
+    .section { padding: 4rem 0; }
+    h2 {
+      font-size: 2.2rem;
+      margin-bottom: 2rem;
+      color: #0ea5e9;
+      text-align: center;
+    }
+
+    .project-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
     }
     .project-card {
-      background: rgba(255,255,255,0.05);
-      border-radius: 24px;
-      padding: 30px;
-      border: 1px solid rgba(255,255,255,0.08);
-      transition: 0.3s;
+      background: #1e2937;
+      padding: 1.5rem;
+      border-radius: 12px;
+      border: 1px solid #334155;
+      transition: all 0.3s;
     }
     .project-card:hover {
       transform: translateY(-8px);
-      border-color: #38bdf8;
+      border-color: #0ea5e9;
+      box-shadow: 0 10px 30px rgba(14, 165, 233, 0.2);
     }
-    .project-card h3 {
-      margin-bottom: 15px;
-      color: #38bdf8;
-    }
-    .project-card p {
-      color: #cbd5e1;
-      margin-bottom: 20px;
-    }
-    .project-tags {
+    .project-card h3 { color: #60a5fa; margin-bottom: 0.8rem; }
+
+    .tech-stack {
       display: flex;
       flex-wrap: wrap;
-      gap: 10px;
-      margin-bottom: 20px;
+      gap: 0.5rem;
+      margin: 1rem 0;
     }
-    .tag {
-      background: rgba(255,255,255,0.08);
-      padding: 8px 14px;
-      border-radius: 999px;
-      font-size: 0.85rem;
+    .tech {
+      background: #334155;
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 0.9rem;
     }
+
     footer {
-      padding: 40px 0;
       text-align: center;
-      border-top: 1px solid rgba(255,255,255,0.08);
-      color: #94a3b8;
-    }
-    @media(max-width: 900px) {
-      .hero-content {
-        grid-template-columns: 1fr;
-      }
-      .hero-text h1 {
-        font-size: 2.8rem;
-      }
+      padding: 2rem 0;
+      border-top: 1px solid #334155;
+      color: #64748b;
     }
   </style>
 </head>
 <body>
-  <nav>
-    <div class="container nav-content">
-      <div class="logo">Shihab Bin Kader</div>
-      <div class="nav-links">
-        <a href="#about">About</a>
-        <a href="#research">Research</a>
-        <a href="#projects">Projects</a>
-        <a href="#contact">Contact</a>
-      </div>
-    </div>
-  </nav>
+  <div class="container">
+    <header>
+      <h1 style="text-align:center; color:#0ea5e9;">Shihab Bin Kader</h1>
+      <p style="text-align:center; font-size:1.1rem;">AI & Machine Learning Engineer | Computer Vision Enthusiast</p>
+    </header>
 
-  <section class="hero">
-    <div class="container hero-content">
-      <div class="hero-text">
-        <h1>Hi, I'm <span>Shihab Bin Kader</span></h1>
-        <p>
-          Computer Science Graduate specializing in Computer Vision, 
-          Deep Learning, and Explainable AI.
-        </p>
-        <div style="display: flex; gap: 16px; flex-wrap: wrap;">
-          <a href="#projects" class="btn btn-primary">View Projects</a>
-          <a href="https://github.com/shihabbk18" target="_blank" class="btn btn-secondary">
-            <i class="fab fa-github"></i> GitHub
-          </a>
-        </div>
-      </div>
-    </div>
-  </section>
+    <section class="hero">
+      <h1>Hi, I'm Shihab 👋</h1>
+      <p>Computer Science Graduate specializing in <strong>Computer Vision</strong>, <strong>Deep Learning</strong>, and <strong>Explainable AI</strong>.</p>
+      <a href="https://github.com/shihabbk18" target="_blank" style="background:#0ea5e9; color:black; padding:12px 28px; border-radius:50px; text-decoration:none; font-weight:bold;">View GitHub</a>
+    </section>
 
-  <section id="about">
-    <div class="container">
-      <div class="section-title">
-        <h2>About Me</h2>
-      </div>
-      <div class="project-card" style="max-width: 900px; margin: 0 auto;">
-        <p>
-          Passionate about developing interpretable hybrid deep learning models for real-world applications, 
-          particularly in precision agriculture and smart farming systems using Computer Vision and Explainable AI (XAI).
-        </p>
-      </div>
-    </div>
-  </section>
-<section>
-  <div class="hero-card">
-        <h3>Current Focus</h3>
-        <ul>
-          <li>✓ Data Analysis & Visualization</li>
-          <li>✓ Machine Learning Projects</li>
-          <li>✓ Computer Vision Systems</li>
-          <li>✓ Real-Time AI Applications</li>
-          <li>✓ Deep Learning Research</li>
-        </ul>
-      </div>
-</section>
-  <!-- Research Section -->
-  <section id="research">
-    <div class="container">
-      <div class="section-title">
-        <h2>Research & Publication</h2>
-      </div>
-      <div class="project-card" style="max-width: 900px; margin: 0 auto;">
-        <h3>Hybrid Xception-LSTM Model for Explainable Mango Ripeness Classification Using Grad-CAM</h3>
-        <p style="color: #94a3b8; margin: 12px 0;">
-          IEEE 4th International Conference on Robotics, Automation, Artificial Intelligence and Internet-of-Things • November 2025
-        </p>
-        <p>
-          Developed a hybrid deep learning model achieving <strong>98% accuracy</strong> on a 6,000-image dataset 
-          with 6 ripeness stages. Enhanced model interpretability using Grad-CAM visualizations.
-        </p>
-        <p style="margin-top: 15px; font-size: 0.95rem; color: #94a3b8;">
-          <strong>Thesis:</strong> Mango Ripeness Detection Using Deep Learning with XAI (GradCAM)
-        </p>
-      </div>
-    </div>
-  </section>
-
-  <!-- Projects Section -->
-  <section id="projects">
-    <div class="container">
-      <div class="section-title">
-        <h2>Featured Projects</h2>
-      </div>
-      <div class="projects-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px;">
+    <section class="section">
+      <h2>Featured Projects</h2>
+      <div class="project-grid">
         
         <div class="project-card">
-          <h3>Movie Data Analysis</h3>
-          <p>
-            Comprehensive Exploratory Data Analysis on IMDb Top 1000 movies. 
-            Analyzed ratings, genres, directors, and visualized key insights.
-          </p>
-          <div class="project-tags">
-            <div class="tag">Python</div>
-            <div class="tag">Pandas</div>
-            <div class="tag">Matplotlib</div>
-            <div class="tag">Seaborn</div>
+          <h3>👐 Sign Sense - ASL Detector</h3>
+          <p>Real-time American Sign Language alphabet detector using CNN and OpenCV. Achieved high accuracy in live webcam detection.</p>
+          <div class="tech-stack">
+            <span class="tech">TensorFlow</span>
+            <span class="tech">OpenCV</span>
+            <span class="tech">Python</span>
+            <span class="tech">Computer Vision</span>
           </div>
-          <a href="https://github.com/shihabbk18/movie-data-analysis" target="_blank" class="btn btn-primary">View on GitHub</a>
+          <a href="https://github.com/shihabbk18/sign-sense" target="_blank">→ View Project</a>
         </div>
 
         <div class="project-card">
-          <h3>Image Capture Generator</h3>
-          <p>
-            This project generates captions for images using deep learning.
-
-            
-          </p>
-          <div class="project-tags">
-            <div class="tag">CNN (InceptionV3) for feature extraction</div>
-            <div class="tag"> LSTM for sequence generation</div>
-            <div class="tag">Python</div>
-             <div class="tag">DeepLearning</div>
+          <h3>🌳 Mango Ripeness Detection (XAI)</h3>
+          <p>Hybrid Xception-LSTM model with Grad-CAM for explainable mango ripeness classification. Published in IEEE Conference.</p>
+          <div class="tech-stack">
+            <span class="tech">Deep Learning</span>
+            <span class="tech">XAI</span>
+            <span class="tech">Grad-CAM</span>
           </div>
-          <a href="https://github.com/shihabbk18/image-caption-generator" target="_blank" class="btn btn-primary">View on GitHub</a>
+          <a href="#">→ View Paper</a>
         </div>
-        
-         <div class="project-card">
-          <h3> Drowsiness AI</h3>
-          <p>
-            This is a real-time AI project that detects whether a person is **alert or drowsy** using deep learning.
-          </p>
-          <div class="project-tags">
-            <div class="tag">Python</div>
-            <div class="tag"> TensorFlow / Keras </div>
-            <div class="tag">OpenCV </div>
+
+        <div class="project-card">
+          <h3>🎥 Movie Data Analysis</h3>
+          <p>Comprehensive EDA on IMDb Top 1000 movies with insightful visualizations.</p>
+          <div class="tech-stack">
+            <span class="tech">Pandas</span>
+            <span class="tech">Matplotlib</span>
+            <span class="tech">Seaborn</span>
           </div>
-          <a href="https://github.com/shihabbk18/drowsiness-ai" target="_blank" class="btn btn-primary">View on GitHub</a>
+          <a href="https://github.com/shihabbk18/movie-data-analysis" target="_blank">→ View Project</a>
         </div>
-      </div>
-    </div>
-  </section>
 
-  <!-- Contact -->
-  <section id="contact">
-    <div class="container">
-      <div class="section-title">
-        <h2>Contact Me</h2>
       </div>
-      <div class="project-card" style="max-width: 700px; margin: 0 auto; text-align: center;">
-        <p style="font-size: 1.1rem; margin-bottom: 30px;">
-          Open to research collaborations, MSc opportunities, and AI/ML projects.
-        </p>
-        <div style="display: flex; justify-content: center; gap: 20px; flex-wrap: wrap;">
-          <a href="mailto:shihabbk18@gmail.com" class="btn btn-primary">
-            <i class="fas fa-envelope"></i> shihabbk18@gmail.com
-          </a>
-          <a href="tel:+8801681079357" class="btn btn-secondary">
-            <i class="fas fa-phone"></i> +880 1681-079357
-          </a>
-          <a href="https://github.com/shihabbk18" target="_blank" class="btn btn-secondary">
-            <i class="fab fa-github"></i> GitHub
-          </a>
-        </div>
-      </div>
-    </div>
-  </section>
+    </section>
 
-  <footer>
-    <div class="container">
-      <p>© 2026 Shihab Bin Kader • Built with ❤️ using GitHub Pages</p>
-    </div>
-  </footer>
+    <footer>
+      <p>Made with ❤️ in Bangladesh | © 2026 Shihab Bin Kader</p>
+    </footer>
+  </div>
 </body>
 </html>
