@@ -1,147 +1,368 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Shihab Bin Kader | AI & ML Engineer</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-  <style>
-    :root {
-      --primary: #0ea5e9;
-      --dark: #0f172a;
-      --light: #f8fafc;
-    }
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: linear-gradient(135deg, #0f172a 0%, #1e2937 100%);
-      color: #e2e8f0;
-      line-height: 1.6;
-    }
-    .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
-
-    header {
-      padding: 2rem 0;
-      border-bottom: 1px solid #334155;
-    }
-    .hero {
-      text-align: center;
-      padding: 4rem 0;
-    }
-    .hero h1 {
-      font-size: 3.5rem;
-      margin-bottom: 1rem;
-      background: linear-gradient(90deg, #0ea5e9, #3b82f6);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-    .hero p { font-size: 1.3rem; color: #94a3b8; margin-bottom: 2rem; }
-
-    .section { padding: 4rem 0; }
-    h2 {
-      font-size: 2.2rem;
-      margin-bottom: 2rem;
-      color: #0ea5e9;
-      text-align: center;
-    }
-
-    .project-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 1.5rem;
-    }
-    .project-card {
-      background: #1e2937;
-      padding: 1.5rem;
-      border-radius: 12px;
-      border: 1px solid #334155;
-      transition: all 0.3s;
-    }
-    .project-card:hover {
-      transform: translateY(-8px);
-      border-color: #0ea5e9;
-      box-shadow: 0 10px 30px rgba(14, 165, 233, 0.2);
-    }
-    .project-card h3 { color: #60a5fa; margin-bottom: 0.8rem; }
-
-    .tech-stack {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-      margin: 1rem 0;
-    }
-    .tech {
-      background: #334155;
-      padding: 4px 12px;
-      border-radius: 20px;
-      font-size: 0.9rem;
-    }
-
-    footer {
-      text-align: center;
-      padding: 2rem 0;
-      border-top: 1px solid #334155;
-      color: #64748b;
-    }
-  </style>
-</head>
-<body>
-  <div class="container">
-    <header>
-      <h1 style="text-align:center; color:#0ea5e9;">Shihab Bin Kader</h1>
-      <p style="text-align:center; font-size:1.1rem;">AI & Machine Learning Engineer | Computer Vision Enthusiast</p>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Portfolio of Shihab Bin Kader, a CSE graduate focused on computer vision, deep learning, XAI, and multimodal AI."
+    />
+    <title>Shihab Bin Kader | AI Portfolio</title>
+    <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="#top" aria-label="Shihab Bin Kader home">
+        <span>SBK</span>
+      </a>
+      <nav class="nav-links" aria-label="Primary navigation">
+        <a href="#work">Work</a>
+        <a href="#research">Research</a>
+        <a href="#repos">Repositories</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <a class="header-action" href="assets/CV-SHIHABBINKADER.pdf" target="_blank" rel="noreferrer">
+        Download CV
+      </a>
     </header>
 
-    <section class="hero">
-      <h1>Hi, I'm Shihab 👋</h1>
-      <p>Computer Science Graduate specializing in <strong>Computer Vision</strong>, <strong>Deep Learning</strong>, and <strong>Explainable AI</strong>.</p>
-      <a href="https://github.com/shihabbk18" target="_blank" style="background:#0ea5e9; color:black; padding:12px 28px; border-radius:50px; text-decoration:none; font-weight:bold;">View GitHub</a>
-    </section>
-
-    <section class="section">
-      <h2>Featured Projects</h2>
-      <div class="project-grid">
-        
-        <div class="project-card">
-          <h3>👐 Sign Sense - ASL Detector</h3>
-          <p>Real-time American Sign Language alphabet detector using CNN and OpenCV. Achieved high accuracy in live webcam detection.</p>
-          <div class="tech-stack">
-            <span class="tech">TensorFlow</span>
-            <span class="tech">OpenCV</span>
-            <span class="tech">Python</span>
-            <span class="tech">Computer Vision</span>
+    <main id="top">
+      <section class="hero section-shell">
+        <div class="hero-copy">
+          <p class="eyebrow">Computer Vision | Deep Learning | Explainable AI</p>
+          <h1>Shihab Bin Kader</h1>
+          <p class="hero-lede">
+            CSE graduate building practical AI systems across vision, multimodal learning, and
+            explainable model behavior for real-world decision support.
+          </p>
+          <div class="hero-actions">
+            <a class="button primary" href="#repos">Explore repositories</a>
+            <a class="button secondary" href="mailto:shihabbk18@gmail.com">Email me</a>
           </div>
-          <a href="https://github.com/shihabbk18/sign-sense" target="_blank">→ View Project</a>
+          <dl class="hero-meta">
+            <div>
+              <dt>Location</dt>
+              <dd>Chittagong, Bangladesh</dd>
+            </div>
+            <div>
+              <dt>Education</dt>
+              <dd>B.Sc. in CSE, East Delta University</dd>
+            </div>
+            <div>
+              <dt>Focus</dt>
+              <dd>AI research and applied ML products</dd>
+            </div>
+          </dl>
         </div>
 
-        <div class="project-card">
-          <h3>🌳 Mango Ripeness Detection (XAI)</h3>
-          <p>Hybrid Xception-LSTM model with Grad-CAM for explainable mango ripeness classification. Published in IEEE Conference.</p>
-          <div class="tech-stack">
-            <span class="tech">Deep Learning</span>
-            <span class="tech">XAI</span>
-            <span class="tech">Grad-CAM</span>
+        <aside class="profile-panel" aria-label="Profile summary">
+          <div class="profile-visual">
+            <img
+              src="https://github.com/shihabbk18.png"
+              alt="Shihab Bin Kader GitHub avatar"
+              width="176"
+              height="176"
+            />
+            <div class="signal-card">
+              <span class="signal-label">GitHub</span>
+              <strong>8 public repos</strong>
+              <span>Python, JavaScript, HTML, Jupyter Notebook</span>
+            </div>
           </div>
-          <a href="https://www.researchgate.net/publication/401274988_Hybrid_Xception-LSTM_Model_for_Explainable_Mango_Ripeness_Classification_Using_Grad-CAM">→ View Paper</a>
+          <div class="code-window" aria-hidden="true">
+            <div class="window-dots"><span></span><span></span><span></span></div>
+            <pre><code>research_stack = [
+  "Grad-CAM",
+  "CNN-RNN hybrids",
+  "Computer Vision",
+  "Generative AI"
+]</code></pre>
+          </div>
+        </aside>
+      </section>
+
+      <section class="section-shell split-section" id="work">
+        <div>
+          <p class="eyebrow">Profile</p>
+          <h2>Applied AI with research discipline.</h2>
+        </div>
+        <div class="stacked-copy">
+          <p>
+            I am a Computer Science and Engineering graduate from East Delta University with a
+            research interest in computer vision, deep learning, and Explainable AI. My work is
+            especially drawn toward interpretable hybrid models for precision agriculture, smart
+            farming, and human-centered AI tools.
+          </p>
+          <p>
+            Recent work includes mango ripeness detection using deep learning and Grad-CAM,
+            real-time sign language recognition, drowsiness detection, image captioning, and
+            multimodal AI experiments.
+          </p>
+        </div>
+      </section>
+
+      <section class="section-shell compact-section" aria-label="Highlights">
+        <div class="metric-grid">
+          <article>
+            <span>98%</span>
+            <p>Mango ripeness classification accuracy reported in publication work.</p>
+          </article>
+          <article>
+            <span>6,000</span>
+            <p>Image dataset used across six mango ripeness stages.</p>
+          </article>
+          <article>
+            <span>162</span>
+            <p>Undergraduate credits completed in Computer Science and Engineering.</p>
+          </article>
+          <article>
+            <span>3.13</span>
+            <p>Final undergraduate CGPA out of 4.00.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section-shell grid-section" id="research">
+        <div class="section-heading">
+          <p class="eyebrow">Research & Education</p>
+          <h2>Computer vision, XAI, and practical learning systems.</h2>
         </div>
 
-        <div class="project-card">
-          <h3>🎥 Movie Data Analysis</h3>
-          <p>Comprehensive EDA on IMDb Top 1000 movies with insightful visualizations.</p>
-          <div class="tech-stack">
-            <span class="tech">Pandas</span>
-            <span class="tech">Matplotlib</span>
-            <span class="tech">Seaborn</span>
+        <div class="timeline">
+          <article class="timeline-item featured">
+            <span class="date">2025</span>
+            <h3>Hybrid Xception-LSTM Model for Explainable Mango Ripeness Classification</h3>
+            <p>
+              Developed a hybrid Xception-LSTM classifier using Grad-CAM visualizations for
+              interpretability. Accepted for IEEE RAAICON 2025.
+            </p>
+          </article>
+          <article class="timeline-item">
+            <span class="date">2020 - 2025</span>
+            <h3>B.Sc. in Computer Science and Engineering</h3>
+            <p>
+              East Delta University, Chittagong. Thesis: Mango Ripeness Detection Using Deep
+              Learning with XAI (Grad-CAM).
+            </p>
+          </article>
+          <article class="timeline-item">
+            <span class="date">Awards</span>
+            <h3>Dean's List and EDU Academic Scholarship</h3>
+            <p>
+              Recognized for academic achievement and awarded tuition support for undergraduate
+              performance.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section-shell skills-section">
+        <div class="section-heading">
+          <p class="eyebrow">Technical Toolkit</p>
+          <h2>Tools I use to move from idea to prototype.</h2>
+        </div>
+        <div class="skill-cloud" aria-label="Skills">
+          <span>Python</span>
+          <span>Java</span>
+          <span>C</span>
+          <span>C++</span>
+          <span>TensorFlow</span>
+          <span>Keras</span>
+          <span>Xception</span>
+          <span>LSTM</span>
+          <span>Transfer Learning</span>
+          <span>Grad-CAM</span>
+          <span>MySQL</span>
+          <span>Android Studio</span>
+          <span>HTML</span>
+          <span>CSS</span>
+          <span>GitHub</span>
+        </div>
+      </section>
+
+      <section class="section-shell repos-section" id="repos">
+        <div class="section-heading repo-heading">
+          <div>
+            <p class="eyebrow">GitHub Portfolio</p>
+            <h2>Repositories and projects.</h2>
           </div>
-          <a href="https://github.com/shihabbk18/movie-data-analysis" target="_blank">→ View Project</a>
+          <div class="filter-group" aria-label="Repository filters">
+            <button class="filter-button active" type="button" data-filter="all">All</button>
+            <button class="filter-button" type="button" data-filter="ai">AI</button>
+            <button class="filter-button" type="button" data-filter="web">Web</button>
+            <button class="filter-button" type="button" data-filter="data">Data</button>
+          </div>
         </div>
 
-      </div>
-    </section>
+        <div class="repo-grid">
+          <article class="repo-card highlight" data-tags="ai web javascript">
+            <div class="repo-topline">
+              <span>JavaScript</span>
+              <a href="https://github.com/shihabbk18/gesturecam-fx" target="_blank" rel="noreferrer">GitHub</a>
+            </div>
+            <h3>gesturecam-fx</h3>
+            <p>
+              Gesture-camera experiment for interactive browser-based visual effects and
+              motion-driven interfaces.
+            </p>
+          </article>
 
-    <footer>
-      <p>Made with ❤️ in Bangladesh | © 2026 Shihab Bin Kader</p>
+          <article class="repo-card highlight" data-tags="ai python">
+            <div class="repo-topline">
+              <span>Python</span>
+              <a href="https://github.com/shihabbk18/ModelDNA" target="_blank" rel="noreferrer">GitHub</a>
+            </div>
+            <h3>ModelDNA</h3>
+            <p>
+              MRI scan for neural networks using Grad-CAM and explainable AI to inspect model
+              behavior.
+            </p>
+          </article>
+
+          <article class="repo-card" data-tags="web html">
+            <div class="repo-topline">
+              <span>HTML</span>
+              <a href="https://github.com/shihabbk18/shihabbk18.github.io" target="_blank" rel="noreferrer">GitHub</a>
+            </div>
+            <h3>shihabbk18.github.io</h3>
+            <p>
+              Personal GitHub Pages repository for publishing portfolio updates and profile work.
+            </p>
+          </article>
+
+          <article class="repo-card highlight" data-tags="ai python">
+            <div class="repo-topline">
+              <span>Python</span>
+              <a href="https://github.com/shihabbk18/sign-sense" target="_blank" rel="noreferrer">GitHub</a>
+            </div>
+            <h3>sign-sense</h3>
+            <p>
+              Real-time American Sign Language detector using CNN models, interactive learning, and
+              user progress concepts.
+            </p>
+          </article>
+
+          <article class="repo-card" data-tags="data notebook">
+            <div class="repo-topline">
+              <span>Jupyter Notebook</span>
+              <a href="https://github.com/shihabbk18/movie-data-analysis" target="_blank" rel="noreferrer">GitHub</a>
+            </div>
+            <h3>movie-data-analysis</h3>
+            <p>
+              Notebook-based analysis project for exploring movie datasets, trends, and storytelling
+              through data.
+            </p>
+          </article>
+
+          <article class="repo-card" data-tags="ai python">
+            <div class="repo-topline">
+              <span>Python</span>
+              <a href="https://github.com/shihabbk18/drowsiness-ai" target="_blank" rel="noreferrer">GitHub</a>
+            </div>
+            <h3>drowsiness-ai</h3>
+            <p>
+              AI safety prototype focused on detecting fatigue and drowsiness signals from visual
+              inputs.
+            </p>
+          </article>
+
+          <article class="repo-card" data-tags="ai python">
+            <div class="repo-topline">
+              <span>Python</span>
+              <a href="https://github.com/shihabbk18/multimodal-ai" target="_blank" rel="noreferrer">GitHub</a>
+            </div>
+            <h3>multimodal-ai</h3>
+            <p>
+              Experiments combining computer vision, NLP, and generative AI into multimodal
+              workflows.
+            </p>
+          </article>
+
+          <article class="repo-card" data-tags="ai python">
+            <div class="repo-topline">
+              <span>Python</span>
+              <a href="https://github.com/shihabbk18/image-caption-generator" target="_blank" rel="noreferrer">GitHub</a>
+            </div>
+            <h3>image-caption-generator</h3>
+            <p>
+              Image-to-text generation project connecting visual understanding with natural language
+              output.
+            </p>
+          </article>
+
+          <article class="repo-card local-card" data-tags="ai python">
+            <div class="repo-topline">
+              <span>Local Python project</span>
+              <a href="HandDotDraw/README.md">Readme</a>
+            </div>
+            <h3>HandDotDraw</h3>
+            <p>
+              OpenCV hand-tracking drawing app with smoothed dotted Bezier strokes and webcam-based
+              gesture controls.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section-shell projects-section">
+        <div class="section-heading">
+          <p class="eyebrow">Selected Projects</p>
+          <h2>CV projects beyond the repository list.</h2>
+        </div>
+        <div class="project-list">
+          <article>
+            <h3>Sign Sense</h3>
+            <p>
+              Python web application for sign language learning with interactive alphabet and phrase
+              tutorials, authentication, and progress tracking.
+            </p>
+          </article>
+          <article>
+            <h3>Fun with Flags</h3>
+            <p>
+              Android quiz app built with Java and Android Studio, backed by MySQL for quiz data,
+              scoring, result reports, and feedback.
+            </p>
+          </article>
+          <article>
+            <h3>Community Volunteering</h3>
+            <p>
+              Supported child-focused educational and social programs in Chittagong through event
+              organization and community service.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section class="contact-band" id="contact">
+        <div class="section-shell contact-content">
+          <div>
+            <p class="eyebrow">Contact</p>
+            <h2>Open to AI research, ML engineering, and portfolio-worthy collaborations.</h2>
+          </div>
+          <div class="contact-actions">
+            <a class="button primary" href="mailto:shihabbk18@gmail.com">shihabbk18@gmail.com</a>
+            <a class="button secondary" href="tel:+8801681079357">+880 1681079357</a>
+            <a class="button secondary" href="https://github.com/shihabbk18" target="_blank" rel="noreferrer">
+              GitHub Profile
+            </a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <span>Shihab Bin Kader</span>
+      <span>Built for GitHub Pages</span>
     </footer>
-  </div>
-</body>
+
+    <script src="script.js"></script>
+  </body>
 </html>
