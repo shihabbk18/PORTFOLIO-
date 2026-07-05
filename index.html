@@ -30,6 +30,7 @@
       </a>
       <nav class="nav-links" aria-label="Primary navigation">
         <a href="#work">Work</a>
+        <a href="#showreel">Showreel</a>
         <a href="#research">Research</a>
         <a href="#repos">Repositories</a>
         <a href="#contact">Contact</a>
@@ -75,12 +76,16 @@
 
         <aside class="profile-panel" aria-label="AI portfolio showreel">
           <div class="showreel-stage">
-            <canvas id="aiShowreel" width="920" height="620" aria-hidden="true"></canvas>
+            <img
+              class="showreel-video"
+              src="assets/portfolio-showreel.gif"
+              alt="Animated AI portfolio showreel with computer vision, Grad-CAM, and multimodal AI scenes"
+            />
             <div class="showreel-grid" aria-hidden="true"></div>
             <div class="showreel-scan" aria-hidden="true"></div>
             <div class="showreel-copy">
-              <span>Live AI Showreel</span>
-              <strong>Vision systems, XAI, and multimodal prototypes</strong>
+              <span>Motion Showreel</span>
+              <strong>AI portfolio, edited like a cinematic reel</strong>
             </div>
             <div class="model-stack" aria-hidden="true">
               <span>Input frame</span>
@@ -89,6 +94,7 @@
               <span>Decision</span>
             </div>
             <img
+              class="showreel-avatar"
               src="https://github.com/shihabbk18.png"
               alt="Shihab Bin Kader GitHub avatar"
               width="176"
@@ -115,6 +121,69 @@
 ]</code></pre>
           </div>
         </aside>
+      </section>
+
+      <section class="story-reel" id="showreel">
+        <div class="story-sticky">
+          <div class="story-copy">
+            <p class="eyebrow">Cinematic Scroll Reel</p>
+            <h2>One story. Four scenes. Each layer lands on top of the last.</h2>
+            <p>
+              This section behaves like a portfolio trailer: research, projects, and proof points
+              move in sequence instead of sitting as normal static blocks.
+            </p>
+          </div>
+
+          <div class="story-stage" aria-label="Animated portfolio story cards">
+            <article class="story-card active" data-story-card>
+              <span class="scene-count">01</span>
+              <div>
+                <p class="eyebrow">Vision Research</p>
+                <h3>Mango ripeness classification with explainable AI.</h3>
+                <p>Hybrid Xception-LSTM work with Grad-CAM visualizations and 98% reported accuracy.</p>
+              </div>
+              <img src="assets/portfolio-showreel.gif" alt="Animated visual summary of AI research work" />
+            </article>
+
+            <article class="story-card" data-story-card>
+              <span class="scene-count">02</span>
+              <div>
+                <p class="eyebrow">ModelDNA</p>
+                <h3>Neural network MRI using Grad-CAM.</h3>
+                <p>Visual inspection tools for understanding how models make decisions.</p>
+              </div>
+              <div class="heatmap-panel" aria-hidden="true">
+                <span></span><span></span><span></span><span></span>
+              </div>
+            </article>
+
+            <article class="story-card" data-story-card>
+              <span class="scene-count">03</span>
+              <div>
+                <p class="eyebrow">Sign Sense</p>
+                <h3>Real-time sign language recognition.</h3>
+                <p>Interactive computer-vision prototype for learning and recognizing ASL concepts.</p>
+              </div>
+              <div class="gesture-panel" aria-hidden="true">
+                <i></i><i></i><i></i><i></i><i></i>
+              </div>
+            </article>
+
+            <article class="story-card" data-story-card>
+              <span class="scene-count">04</span>
+              <div>
+                <p class="eyebrow">Multimodal AI</p>
+                <h3>Vision, language, and generative workflows.</h3>
+                <p>Prototype-driven work across image captioning, safety detection, and applied ML tools.</p>
+              </div>
+              <div class="terminal-panel" aria-hidden="true">
+                <code>deploy_candidate = "Shihab Bin Kader"</code>
+                <code>skills.match(["CV", "XAI", "Python"])</code>
+                <code>result = "interview-ready"</code>
+              </div>
+            </article>
+          </div>
+        </div>
       </section>
 
       <section class="section-shell split-section reveal" id="work">

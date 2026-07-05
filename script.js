@@ -1,6 +1,8 @@
 const filterButtons = document.querySelectorAll(".filter-button");
 const repoCards = document.querySelectorAll(".repo-card");
 const revealItems = document.querySelectorAll(".reveal");
+const storyReel = document.querySelector(".story-reel");
+const storyCards = document.querySelectorAll("[data-story-card]");
 const showreelCanvas = document.querySelector("#aiShowreel");
 const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
@@ -108,6 +110,32 @@ function startShowreel(canvas) {
 }
 
 startShowreel(showreelCanvas);
+
+function updateStoryCards() {
+  if (!storyReel || !storyCards.length || window.innerWidth <= 980) {
+    storyCards.forEach((card, index) => {
+      card.classList.toggle("is-active", index === 0);
+      card.classList.remove("is-before", "is-after");
+    });
+    return;
+  }
+
+  const rect = storyReel.getBoundingClientRect();
+  const scrollable = storyReel.offsetHeight - window.innerHeight;
+  const progress = Math.min(0.999, Math.max(0, -rect.top / scrollable));
+  const activeIndex = Math.min(storyCards.length - 1, Math.floor(progress * storyCards.length));
+
+  storyCards.forEach((card, index) => {
+    card.classList.toggle("is-active", index === activeIndex);
+    card.classList.toggle("is-before", index < activeIndex);
+    card.classList.toggle("is-after", index > activeIndex);
+    card.style.zIndex = String(index <= activeIndex ? index + 2 : storyCards.length - index);
+  });
+}
+
+window.addEventListener("scroll", updateStoryCards, { passive: true });
+window.addEventListener("resize", updateStoryCards);
+updateStoryCards();
 
 const revealObserver = new IntersectionObserver(
   (entries) => {
