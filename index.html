@@ -73,8 +73,21 @@
           </dl>
         </div>
 
-        <aside class="profile-panel" aria-label="Profile summary">
-          <div class="profile-visual">
+        <aside class="profile-panel" aria-label="AI portfolio showreel">
+          <div class="showreel-stage">
+            <canvas id="aiShowreel" width="920" height="620" aria-hidden="true"></canvas>
+            <div class="showreel-grid" aria-hidden="true"></div>
+            <div class="showreel-scan" aria-hidden="true"></div>
+            <div class="showreel-copy">
+              <span>Live AI Showreel</span>
+              <strong>Vision systems, XAI, and multimodal prototypes</strong>
+            </div>
+            <div class="model-stack" aria-hidden="true">
+              <span>Input frame</span>
+              <span>Feature map</span>
+              <span>Grad-CAM</span>
+              <span>Decision</span>
+            </div>
             <img
               src="https://github.com/shihabbk18.png"
               alt="Shihab Bin Kader GitHub avatar"
@@ -313,17 +326,6 @@
             </p>
           </article>
 
-          <article class="repo-card local-card" data-tags="ai python">
-            <div class="repo-topline">
-              <span>Local Python project</span>
-              <a href="HandDotDraw/README.md">Readme</a>
-            </div>
-            <h3>HandDotDraw</h3>
-            <p>
-              OpenCV hand-tracking drawing app with smoothed dotted Bezier strokes and webcam-based
-              gesture controls.
-            </p>
-          </article>
         </div>
       </section>
 
