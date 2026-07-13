@@ -231,6 +231,7 @@ img { display: block; max-width: 100%; }
 .repo-card div > p:not(.repo-label) { margin: 0; color: var(--muted); font-size: .91rem; }
 .repo-footer { padding-top: 22px; border-top: 1px solid var(--line); }
 .repo-footer > span { color: var(--muted); font: .56rem var(--mono); }
+.repo-footer > span a { color: var(--ink); text-underline-offset: 4px; }
 .repo-footer a { display: grid; place-items: center; width: 38px; height: 38px; border: 1px solid var(--line); border-radius: 50%; color: var(--acid); text-decoration: none; transition: 180ms ease; }
 .repo-footer a:hover { color: var(--bg); background: var(--acid); transform: rotate(45deg); }
 
@@ -358,4 +359,3 @@ footer a { text-decoration: none; }
   .reveal { opacity: 1; transform: none; }
   .loader { display: none; }
 }
-
