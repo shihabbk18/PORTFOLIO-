@@ -1,189 +1,220 @@
-const filterButtons = document.querySelectorAll(".filter-button");
-const repoCards = document.querySelectorAll(".repo-card");
-const revealItems = document.querySelectorAll(".reveal");
-const storyReel = document.querySelector(".story-reel");
-const storyCards = document.querySelectorAll("[data-story-card]");
-const showreelCanvas = document.querySelector("#aiShowreel");
+const body = document.body;
+const loader = document.querySelector(".loader");
+const header = document.querySelector(".site-header");
+const progressBar = document.querySelector(".scroll-progress span");
+const cursorGlow = document.querySelector(".cursor-glow");
+const menuToggle = document.querySelector(".menu-toggle");
+const navigation = document.querySelector(".site-header nav");
 const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-function startShowreel(canvas) {
-  if (!canvas) {
-    return;
-  }
+body.classList.add("is-loading");
 
-  const context = canvas.getContext("2d");
-  if (!context) {
-    return;
-  }
-  const colors = ["#44d7b6", "#6aa8ff", "#f4c95d", "#ff725c", "#a990ff"];
-  const nodes = Array.from({ length: 58 }, (_, index) => ({
-    x: Math.random(),
-    y: Math.random(),
-    vx: (Math.random() - 0.5) * 0.0018,
-    vy: (Math.random() - 0.5) * 0.0018,
-    radius: 1.6 + Math.random() * 2.8,
-    color: colors[index % colors.length],
-  }));
+window.addEventListener("load", () => {
+  window.setTimeout(() => {
+    loader?.classList.add("is-done");
+    body.classList.remove("is-loading");
+  }, prefersReducedMotion ? 0 : 1050);
+});
 
-  function resize() {
-    const rect = canvas.getBoundingClientRect();
-    const pixelRatio = Math.min(window.devicePixelRatio || 1, 2);
-    canvas.width = Math.max(1, Math.floor(rect.width * pixelRatio));
-    canvas.height = Math.max(1, Math.floor(rect.height * pixelRatio));
-    context.setTransform(pixelRatio, 0, 0, pixelRatio, 0, 0);
-  }
+document.querySelector("#year").textContent = new Date().getFullYear();
 
-  function draw(time) {
-    const width = canvas.clientWidth;
-    const height = canvas.clientHeight;
-    context.clearRect(0, 0, width, height);
+function updateScrollState() {
+  const scrollTop = window.scrollY;
+  const scrollRange = document.documentElement.scrollHeight - window.innerHeight;
+  const progress = scrollRange > 0 ? scrollTop / scrollRange : 0;
 
-    const gradient = context.createRadialGradient(width * 0.55, height * 0.46, 10, width * 0.5, height * 0.5, width * 0.7);
-    gradient.addColorStop(0, "rgba(68, 215, 182, 0.17)");
-    gradient.addColorStop(0.45, "rgba(106, 168, 255, 0.08)");
-    gradient.addColorStop(1, "rgba(0, 0, 0, 0)");
-    context.fillStyle = gradient;
-    context.fillRect(0, 0, width, height);
-
-    nodes.forEach((node) => {
-      node.x += node.vx;
-      node.y += node.vy;
-      if (node.x < 0.04 || node.x > 0.96) node.vx *= -1;
-      if (node.y < 0.06 || node.y > 0.94) node.vy *= -1;
-    });
-
-    for (let index = 0; index < nodes.length; index += 1) {
-      for (let nextIndex = index + 1; nextIndex < nodes.length; nextIndex += 1) {
-        const a = nodes[index];
-        const b = nodes[nextIndex];
-        const ax = a.x * width;
-        const ay = a.y * height;
-        const bx = b.x * width;
-        const by = b.y * height;
-        const distance = Math.hypot(ax - bx, ay - by);
-
-        if (distance < 130) {
-          context.strokeStyle = `rgba(68, 215, 182, ${0.22 * (1 - distance / 130)})`;
-          context.lineWidth = 1;
-          context.beginPath();
-          context.moveTo(ax, ay);
-          context.lineTo(bx, by);
-          context.stroke();
-        }
-      }
-    }
-
-    nodes.forEach((node, index) => {
-      const x = node.x * width;
-      const y = node.y * height;
-      const pulse = Math.sin(time * 0.002 + index) * 0.5 + 0.5;
-      context.fillStyle = node.color;
-      context.shadowColor = node.color;
-      context.shadowBlur = 16 + pulse * 16;
-      context.beginPath();
-      context.arc(x, y, node.radius + pulse * 1.5, 0, Math.PI * 2);
-      context.fill();
-    });
-
-    context.shadowBlur = 0;
-    const scanX = (Math.sin(time * 0.0009) * 0.5 + 0.5) * width;
-    context.strokeStyle = "rgba(244, 201, 93, 0.72)";
-    context.lineWidth = 2;
-    context.setLineDash([10, 10]);
-    context.strokeRect(scanX * 0.42, height * 0.18, width * 0.34, height * 0.24);
-    context.strokeRect(width * 0.18, height * 0.52, width * 0.42, height * 0.2);
-    context.setLineDash([]);
-
-    context.fillStyle = "rgba(255, 255, 255, 0.82)";
-    context.font = "700 12px Inter, sans-serif";
-    context.fillText("confidence 98.2%", width * 0.18, height * 0.5);
-    context.fillText("explainability heatmap", scanX * 0.42, height * 0.16);
-
-    if (!prefersReducedMotion) {
-      requestAnimationFrame(draw);
-    }
-  }
-
-  resize();
-  window.addEventListener("resize", resize);
-  draw(0);
+  header?.classList.toggle("scrolled", scrollTop > 30);
+  if (progressBar) progressBar.style.transform = `scaleX(${progress})`;
 }
 
-startShowreel(showreelCanvas);
+window.addEventListener("scroll", updateScrollState, { passive: true });
+updateScrollState();
 
-function updateStoryCards() {
-  if (!storyReel || !storyCards.length || window.innerWidth <= 980) {
-    storyCards.forEach((card, index) => {
-      card.classList.toggle("is-active", index === 0);
-      card.classList.remove("is-before", "is-after");
-    });
-    return;
-  }
-
-  const rect = storyReel.getBoundingClientRect();
-  const scrollable = storyReel.offsetHeight - window.innerHeight;
-  const progress = Math.min(0.999, Math.max(0, -rect.top / scrollable));
-  const activeIndex = Math.min(storyCards.length - 1, Math.floor(progress * storyCards.length));
-
-  storyCards.forEach((card, index) => {
-    card.classList.toggle("is-active", index === activeIndex);
-    card.classList.toggle("is-before", index < activeIndex);
-    card.classList.toggle("is-after", index > activeIndex);
-    card.style.zIndex = String(index <= activeIndex ? index + 2 : storyCards.length - index);
-  });
+if (cursorGlow && !prefersReducedMotion) {
+  window.addEventListener("pointermove", (event) => {
+    cursorGlow.style.left = `${event.clientX}px`;
+    cursorGlow.style.top = `${event.clientY}px`;
+  }, { passive: true });
 }
 
-window.addEventListener("scroll", updateStoryCards, { passive: true });
-window.addEventListener("resize", updateStoryCards);
-updateStoryCards();
+menuToggle?.addEventListener("click", () => {
+  const expanded = menuToggle.getAttribute("aria-expanded") === "true";
+  menuToggle.setAttribute("aria-expanded", String(!expanded));
+  menuToggle.setAttribute("aria-label", expanded ? "Open navigation" : "Close navigation");
+  navigation?.classList.toggle("open", !expanded);
+});
 
-const revealObserver = new IntersectionObserver(
-  (entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add("is-visible");
-        revealObserver.unobserve(entry.target);
-      }
-    });
-  },
-  { threshold: 0.14 }
-);
-
-revealItems.forEach((item) => revealObserver.observe(item));
-
-filterButtons.forEach((button) => {
-  button.addEventListener("click", () => {
-    const filter = button.dataset.filter;
-
-    filterButtons.forEach((item) => item.classList.remove("active"));
-    button.classList.add("active");
-
-    repoCards.forEach((card) => {
-      const tags = card.dataset.tags || "";
-      card.classList.toggle("is-hidden", filter !== "all" && !tags.includes(filter));
-    });
+navigation?.querySelectorAll("a").forEach((link) => {
+  link.addEventListener("click", () => {
+    navigation.classList.remove("open");
+    menuToggle?.setAttribute("aria-expanded", "false");
+    menuToggle?.setAttribute("aria-label", "Open navigation");
   });
 });
 
-repoCards.forEach((card) => {
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach((entry) => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add("is-visible");
+      revealObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.12, rootMargin: "0px 0px -30px" });
+
+document.querySelectorAll(".reveal").forEach((element) => revealObserver.observe(element));
+
+const metricObserver = new IntersectionObserver((entries) => {
+  entries.forEach((entry) => {
+    if (!entry.isIntersecting) return;
+    const element = entry.target;
+    const target = Number(element.dataset.count || 0);
+    const suffix = element.dataset.suffix || "";
+    const format = element.dataset.format;
+    const startedAt = performance.now();
+    const duration = prefersReducedMotion ? 1 : 1400;
+
+    function tick(now) {
+      const elapsed = Math.min(1, (now - startedAt) / duration);
+      const eased = 1 - Math.pow(1 - elapsed, 3);
+      const value = Math.round(target * eased);
+      element.textContent = `${format === "comma" ? value.toLocaleString("en-US") : value}${suffix}`;
+      if (elapsed < 1) requestAnimationFrame(tick);
+    }
+
+    requestAnimationFrame(tick);
+    metricObserver.unobserve(element);
+  });
+}, { threshold: 0.7 });
+
+document.querySelectorAll(".metric-number").forEach((element) => metricObserver.observe(element));
+
+function bindCardGlow(card) {
   card.addEventListener("pointermove", (event) => {
     const rect = card.getBoundingClientRect();
-    const x = ((event.clientX - rect.left) / rect.width) * 100;
-    const y = ((event.clientY - rect.top) / rect.height) * 100;
-    card.style.setProperty("--mx", `${x}%`);
-    card.style.setProperty("--my", `${y}%`);
+    card.style.setProperty("--mx", `${event.clientX - rect.left}px`);
+    card.style.setProperty("--my", `${event.clientY - rect.top}px`);
+  });
+}
+
+document.querySelectorAll(".repo-card").forEach(bindCardGlow);
+
+if (!prefersReducedMotion) {
+  document.querySelectorAll(".magnetic").forEach((element) => {
+    element.addEventListener("pointermove", (event) => {
+      const rect = element.getBoundingClientRect();
+      const x = (event.clientX - rect.left - rect.width / 2) * 0.13;
+      const y = (event.clientY - rect.top - rect.height / 2) * 0.13;
+      element.style.transform = `translate3d(${x}px, ${y}px, 0)`;
+    });
+    element.addEventListener("pointerleave", () => {
+      element.style.transform = "translate3d(0, 0, 0)";
+    });
+  });
+}
+
+const filters = document.querySelectorAll("[data-filter]");
+
+function applyFilter(filter) {
+  document.querySelectorAll(".repo-card").forEach((card) => {
+    const tags = card.dataset.tags || "";
+    card.classList.toggle("is-hidden", filter !== "all" && !tags.includes(filter));
+  });
+}
+
+filters.forEach((button) => {
+  button.addEventListener("click", () => {
+    filters.forEach((item) => item.classList.remove("active"));
+    button.classList.add("active");
+    applyFilter(button.dataset.filter || "all");
   });
 });
 
-document.querySelectorAll('a[href^="#"]').forEach((link) => {
-  link.addEventListener("click", (event) => {
-    const target = document.querySelector(link.getAttribute("href"));
+function inferTags(repository) {
+  const text = `${repository.name} ${repository.description || ""} ${repository.language || ""}`.toLowerCase();
+  const tags = [];
+  if (/ai|model|vision|python|caption|gesture|drows|skin/.test(text)) tags.push("ai");
+  if (/app|web|javascript|typescript|css|html|product|site/.test(text)) tags.push("product");
+  if (/data|analysis|notebook|fda/.test(text)) tags.push("data");
+  return tags.length ? tags.join(" ") : "product";
+}
 
-    if (!target) {
-      return;
-    }
+function createLiveRepositoryCard(repository, index) {
+  const article = document.createElement("article");
+  article.className = "repo-card reveal";
+  article.dataset.repo = repository.name;
+  article.dataset.tags = inferTags(repository);
 
-    event.preventDefault();
-    target.scrollIntoView({ behavior: "smooth", block: "start" });
-  });
-});
+  const top = document.createElement("div");
+  top.className = "repo-card-top";
+  const id = document.createElement("span");
+  id.className = "repo-id";
+  id.textContent = String(index).padStart(2, "0");
+  const language = document.createElement("span");
+  language.className = "language";
+  language.textContent = repository.language || "Repository";
+  top.append(id, language);
+
+  const content = document.createElement("div");
+  const label = document.createElement("p");
+  label.className = "repo-label";
+  label.textContent = "NEW ON GITHUB";
+  const title = document.createElement("h3");
+  title.textContent = repository.name.replace(/-/g, " ");
+  const description = document.createElement("p");
+  description.textContent = repository.description || "Explore this project and its source on GitHub.";
+  content.append(label, title, description);
+
+  const footer = document.createElement("div");
+  footer.className = "repo-footer";
+  const detail = document.createElement("span");
+  detail.textContent = `${repository.language || "Code"} · ${repository.stargazers_count || 0} stars`;
+  const link = document.createElement("a");
+  link.href = repository.html_url;
+  link.target = "_blank";
+  link.rel = "noreferrer";
+  link.setAttribute("aria-label", `Open ${repository.name} on GitHub`);
+  link.textContent = "↗";
+  footer.append(detail, link);
+
+  article.append(top, content, footer);
+  return article;
+}
+
+async function syncGitHubRepositories() {
+  try {
+    const response = await fetch("https://api.github.com/users/shihabbk18/repos?per_page=100&sort=updated", {
+      headers: { Accept: "application/vnd.github+json" }
+    });
+    if (!response.ok) return;
+
+    const repositories = await response.json();
+    if (!Array.isArray(repositories)) return;
+
+    const publicRepositories = repositories.filter((repo) => !repo.fork);
+    const count = document.querySelector("#repoCount");
+    if (count) count.textContent = String(publicRepositories.length);
+
+    publicRepositories.forEach((repository) => {
+      const existing = document.querySelector(`[data-repo="${CSS.escape(repository.name)}"]`);
+      if (existing) {
+        const language = existing.querySelector(".language");
+        if (language && repository.language) language.textContent = repository.language;
+      }
+    });
+
+    const known = new Set([...document.querySelectorAll("[data-repo]")].map((card) => card.dataset.repo));
+    const grid = document.querySelector("#repoGrid");
+    if (!grid) return;
+
+    publicRepositories.filter((repo) => !known.has(repo.name)).forEach((repository, offset) => {
+      const card = createLiveRepositoryCard(repository, known.size + offset + 2);
+      grid.appendChild(card);
+      bindCardGlow(card);
+      revealObserver.observe(card);
+    });
+  } catch {
+    // The curated repository list remains fully usable if GitHub rate limits or blocks the request.
+  }
+}
+
+syncGitHubRepositories();
